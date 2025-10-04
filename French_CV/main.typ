@@ -3,23 +3,32 @@
 
 #set text(font: "PT Sans")
 
+#show link: it => {
+  underline(offset: 1mm,it)
+}
+
 #main(
+  [#pad(top: 4mm,align(center,text(size: 19pt,fill: white, style: "italic",  "Recherche d'un stage en informatique de \n6 mois de Mars à Août 2026")))
+],
   [
     #profile(
-      name: "FALCOZ Alban",
+      name: align(center,"FALCOZ Alban"),
     )
+
+    #align(center,text(size: 11pt,"Étudiant ingénieur en sciences informatiques toujours curieux d'apprendre de nouvelles choses"))
+    
 
     #profile_section("Contact ")
     #show_contacts(
       (
         (
           icon: "user", 
-          text: "21 ans",
+          text: "22 ans",
         ),
         (
           icon: "envelope",
           solid: true,
-          text: "alban.falcoz@orange.fr",
+          text: link("mailto:alban.falcoz@orange.fr")[alban.falcoz\@orange.fr],
         ),
         (
           icon: "phone",
@@ -51,45 +60,38 @@
       ),
       (
         flag: "images/England.png",
-        text: text("Bonne compréhension écrite et oral (Niveau TOEIC C1)"),
+        text: text("Bonne compréhension écrite et orale (Niveau TOEIC B2)"),
       ),
       
       (
         flag: "images/Japan.png",
-        text: text(top-edge: 5mm,"Notions"),
+        text: text(top-edge: 5mm,"Notions (en apprentissage)"),
       ),
       
     )
     )
 
     #profile_section("Langages ")
-    #v(1mm)
     
-      - HTML / CSS / Javascript (Angular)
+      - HTML / CSS / JavaScript (Angular)
       - Java 
       - Rust 
       - Python (numpy, tensorflow, pygame) 
-      - C
-      - SQL (PostgreSQL)
+      - C / C++
 
     #profile_section("CV numérique ")
-    #text(size: 11pt,"Pour accéder à mon CV crée avec Typst en version numérique :")
-    #align(center,qr-code("https://github.com/AlbanFALCOZ/CV", width: 3cm))
+    #text(size: 11pt,"Pour accéder à mon CV en version numérique :")
+    #align(center,qr-code("https://github.com/AlbanFALCOZ/MY_CV", width: 3cm))
   ],
   [
-    
-    #align(center,text(size: 19pt, style: "italic",  "Recherche d'un stage en informatique de \n4 mois à l'étranger de mai 2024 à août 2024"))
-
-    #align(left,text(size: 11pt,"Étudiant en ingénierie informatique, j'aime créer durant mon temps libre des projets informatiques afin de toujours apprendre de nouvelles choses et faire des randonnées avec ma famille pour profiter de la nature."))
-
     #body_section("Formation")
     #school_period(
       period: [
         #text("Sept 2023 - Aujourd'hui")
       ],
       title: "Ingénieur informatique",
-      school_name: "Polytech Nice Sophia  : "+text(style: "italic", "Les Templiers"),
-      addtional_note: "2ème année",
+      school_name: "Polytech Nice Sophia : "+text(style: "italic", "Les Templiers"),
+      addtional_note: "Troisième année. Spécialité Intelligence Artificielle et Ingénierie des Données",
     )
     #school_period(
       period: [
@@ -97,19 +99,39 @@
       ],
       title: "Cycle préparatoire PeiP",
       school_name: "Polytech Nice Sophia : "+text(style: "italic", "Les Lucioles"),
-      addtional_note: "Classé 67 sur 1750",
+      addtional_note: "Classé 67ème sur 1750",
     )
 
     #school_period(
       period: [
-        #text("Sept 2018 - Juillet 2021")
+        #text("Sept 2018 - \nJuillet 2021")
       ],
       title: "Baccalauréat général : ",
-      description: "Mention très bien",
+      description: " Mention Très bien",
       school_name: "Lycée Henri Matisse",
       addtional_note: "Spécialité Mathématiques et Informatique",
     )
+    #body_section("Certificats")
+    #period_item(
+      period: text(size: 12pt,[2024]),
+      images: "images/Polytech.png",
+      image_width: 80%,
+      alignment: center,
+      title: "1er prix concours Full-Stack",
+      body: "Mon site de quiz " + link("https://github.com/AlbanFALCOZ/Harmonikids")[Harmonikids] +" a été élu meilleur projet Full-Stack par une dizaine d'entreprises venues évaluer les réalisations des étudiants de ma promotion."
+    )
+    
     #body_section("Expérience professionnelle")
+    #period_item(
+      period: [
+        Mai 2025 - Août 2025
+      ],
+      title: "Stage de 4 mois au Vietnam",
+      adress: "Da Nang -
+    Vietnam",
+      body: "Création de Greenbot, un assistant conversationnel alimenté par l’intelligence artificielle, conçu pour faciliter la classification des déchets et l’éducation à l’environnement au Vietnam. "
+    )
+    
     #period_item(
       period: [
         Juillet 2022 -
@@ -119,41 +141,34 @@
       body: "Lors de ce stage, j'ai aidé à la création et à la mise en place d'un réseau de neurones afin d'analyser le déplacement d'un signal."
     )
     
-    #period_item(
-      period: [
-        Juin 2019 -
-      ],
-      title: "Stage de 2 semaines chez les pompiers",
-      adress: "Caserne des pompiers",
-      body: "Ce stage m'a permit de comprendre l'importance du travail d'équipe lors des situations critiques."
-    )
+
     #body_section("Projets informatiques")
     #school_project(
       period: [
-        Mars 2024 - \
+        Mars 2024\ - \
         Juin 2024
       ],
       title: "Le site web Harmonikids",
       lien: "https://github.com/AlbanFALCOZ/Harmonikids",
-      body: "Harmonikids est un site de quiz destinés aux enfants atteints d'autisme. Le site est accueillant et bienveillant envers eux, et a été réalisé grâce au framework Angular, ce qui m'a permis de me familiariser avec le front-end et de découvrir comment le back-end fonctionne."
+      body: "Harmonikids est un site de quiz destinés aux enfants atteints d'autisme. Ce projet réalisé avec le framework Angular a consolidé mes connaissances en développement web."
     )
     #school_project(
       period: [
-        Mai 2024 - \
-        Juin 2024
+        Jan 2025 \ - \
+        May 2025
       ],
-      title: "Compilateur réalisé en Python ",
-      lien: "https://github.com/AlbanFALCOZ/Compiler-flo",
-      body: "Ce projet compile le langage Flo, un langage que nous avons créé, en utilisant la bibliothèque Sly de Python pour convertir le code en instructions ARMv7. Il m'a permis de comprendre comment un compilateur effectue l'analyse lexicale et syntaxique pour générer des instructions d'assemblage."
+      title: "Un compilateur réalisé en Python",
+      lien: "https://github.com/AlbanFALCOZ/TronTheSuccessor",
+      body: "Tron the Successor est une adaptation web et mobile inspirée de l’univers du film Tron : L’Héritage. Ce jeu multijoueur propose aux utilisateurs de s’affronter pour grimper dans le classement, tout en offrant des fonctionnalités sociales telles que le chat entre amis et le suivi des statistiques personnelles afin de comparer ses performances avec celles des meilleurs joueurs."
     )
     #school_project(
       period: [
-        Dec 2023 - \
+        Dec 2023 \ - \
         Fev 2024
       ],
       title: "Le jeu de société Citadelles",
       lien: "https://github.com/AlbanFALCOZ/Citadelles",
-      body: "Le projet implémente en Java le jeu de société Citadelle, où les joueurs incarnent des personnages afin d'accumuler des richesses dans leur cité en construisant des quartiers. Il y a différents bots qui adoptent des stratégies différentes pour gagner."
+      body: "Le projet est une implémentation en Java du jeu de société Citadelle, où les joueurs incarnent des personnages et accumulent des richesses dans leur cité en construisant des quartiers."
     )
   ]
 )

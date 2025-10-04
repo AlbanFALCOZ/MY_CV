@@ -20,9 +20,11 @@
   Huge: 25pt,
 )
 
+#let row_pourcent = 7.5%
 
 #let main(
   pages: 1,
+  top,
   left,
   right,
 ) = {
@@ -36,25 +38,28 @@
   )
   grid(
     columns: (35%, 65%),
-    rows: auto,
+    rows: (row_pourcent,auto),
     // column-gutter: 1em,
-    block(
+    grid.cell(y : 0, colspan: 2,fill: rgb("#2F3C7E"))[
+      #top
+    ],
+      grid.cell(x: 0,y: 1)[#block(
       fill: sidecolor,
-      height: pages * 100%,
+      height: pages * (100%-row_pourcent),
       pad(
-        top: 1cm,
-        rest: 0.5cm,
+        top: 0.4cm,
+        rest: 0.3cm,
         left
       )
-    ),
-    block(
+    )],
+    grid.cell(x: 1, y: 1)[#block(
       height: auto,
       pad(
-        top: 0.7cm,
+        top: 0.4cm,
         rest: 0.5cm,
         right,
       ),
-    ),
+    )]
   )
 }
 
@@ -62,16 +67,16 @@
   name: "",
   internship: "",
 ) = {
-  text(fill: pblue, size: fontSize.Huge, name) //
-  align(center, image("images/skills.png", width: 80%))
+  text(fill: pblue, size: 20pt, name) //
+  align(center, image("images/profile_picture.png", width: 55%))
 
    
 }
 
 #let profile_section(title) = {
-  v(3mm)
+
   align(left)[
-    #text(size: fontSize.huge, fill: gray80)[#title]
+    #text(size:19pt, fill: gray80)[#title]
     #box(width: 1fr, baseline: -0.5em, line(length: 100%, stroke: gray80))
   ]
 }
@@ -141,7 +146,7 @@
   set text(size: fontSize.LARGE)
   block[
     #strong()[
-      #text(fill: gradient.linear(rgb("#5B86E5"),rgb("#36D1DC")), title)
+      #text(top-edge: 4mm,fill: gradient.linear(rgb("#5B86E5"),rgb("#36D1DC")), title)
     ]
   ]
 }
@@ -157,20 +162,25 @@
   period: "",
   title: "",
   adress: "",
-  body: ""
+  alignment: left,
+  body: "",
+  images: "",
+  image_width:  60%,
 ) = {
   grid(
     columns: (20%, 80%),
-    block([
+    align(alignment,block([
       #period
+      #if images != "" {
+      align(center,image(images, width: image_width))}
     #if adress.len() > 0 {
         text("\n")
         fa-icon("map-marker")
         text(size: 9pt, style: "italic"," " +adress+"\n")
-      }]),
+      }])),
     par([
       #block()[
-        #strong(text(size: 12pt,title))
+        #strong(text(size: 13pt,title))
       ]
       
       #text(size: 10pt,body)
@@ -184,11 +194,13 @@
   description: "",
   school_name: "",
   addtional_note: "",
+  
 ) = {
   grid(
     columns: (20%, 80%),
     block([
-    #text(period)
+    #align(center,text(period))
+  
     ]),
     par([
       #strong(title)#text(description)
@@ -204,22 +216,25 @@
   title: "",
   lien: "",
   body: "",
+  lien_nom: "",
 ) = {
   grid(
     columns: (20%, 80%),
     block([
-      #period
+      #align(center,text(top-edge: 3mm,period))
         #text("\n")
-        #link(lien)[
-          #fa-icon(size: 20pt, fill: blue,"github")
-        ]
+        
       ]),
     par([
       #block()[
-        #strong(text(size: 12pt,title))
+        #strong(text(size: 13pt,title))
       ]
-      
-      #text(size: 10pt,body)
+    
+      #text(size: 10pt,body+"\n")
+      #link(lien)[
+          #fa-icon(size: 17pt, fill: blue,"github")
+          #text(size: 10pt,lien.slice(19))
+        ]
     ])
   )
 }
